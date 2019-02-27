@@ -1,0 +1,12 @@
+#barInfo {
+    display: block;
+    position: absolute;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+  }
+  
+  #barInfo.hidden {
+    opacity: 0;
+  }
