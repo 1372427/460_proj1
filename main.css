@@ -10,3 +10,31 @@
   #barInfo.hidden {
     opacity: 0;
   }
+
+  svg{
+    display: block;
+  }
+
+  #header {
+    min-height: 5vh;
+    text-align: center;
+    background-color: navy;
+    margin: 0px;
+    padding: 10px;
+    color: whitesmoke;
+  }
+
+
+
+  #wrapper {
+    min-height: 100vh;
+  
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    /*https://css-tricks.com/couple-takes-sticky-footer/*/
+    margin-bottom: -50px;
+  }
+
+  #main {
+    padding: 20px;
+  }

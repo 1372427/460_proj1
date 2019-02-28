@@ -45,7 +45,7 @@ function handleMouseClick(d,i) {
 
 function initGraph() {
 
-        svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
+        svg = d3.select('#main').append('svg').attr('width', w).attr('height', h);
 
         //scales
         yScale = d3.scaleLinear()
@@ -54,7 +54,7 @@ function initGraph() {
         
             
         xScale = d3.scaleLinear()
-            .domain([1999, 2016])
+            .domain([1999, 2017])
             .range([40, w-40]);
 
 
@@ -78,7 +78,8 @@ function initGraph() {
 
 
         //AXIS
-        xAxis = d3.axisBottom(xScale);
+        xAxis = d3.axisBottom(xScale)
+            .ticks(17);
         xAxisGroup = svg.append('g')
              .attr('transform', `translate(0, ${h - 20})`)
              .call(xAxis);
@@ -93,6 +94,8 @@ function initGraph() {
 function updateGraph() {
     yScale.domain([0, d3.max(groupByState[state][cause], (d)=> d.deaths)]);
 
+    cScale
+    .domain([d3.min(groupByState[state][cause], (d)=> d.deaths),d3.max(groupByState[state][cause], (d)=> d.deaths)]);
     
     yAxisGroup.transition()
     .duration(1000)
@@ -118,6 +121,7 @@ function updateGraph() {
         .attr('width', 20)
         .attr('x', (d) => xScale(d.year))
         .attr('y', (d) => yScale(d.deaths))
+        .attr('fill', (d) => cScale(d.deaths))
         .attr('height', (d) =>  h-20-yScale(d.deaths));
 
 
@@ -137,8 +141,6 @@ window.onload = function() {
     let stateDropDown = document.querySelector('#state');
 
     d3.csv(dataUrl, rowConverter).then((data) => {
-
-        console.log(data);
 
         dataset = data;
         
