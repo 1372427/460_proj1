@@ -38,3 +38,9 @@
   #main {
     padding: 20px;
   }
+
+  .line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 3;
+}
