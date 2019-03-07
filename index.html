@@ -5,26 +5,60 @@
     <meta charset="utf-8">
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
+
   </head>
 
   <body>
-    <div id="wrapper">
       <div id="header">
-        <h1>Leading Causes of Death</h1>
-      </div>
+          <h1>Leading Causes of Death</h1>
+        </div>
+    <div id="wrapper">
+
 
       <div id="main">
         <select id="state">
         </select>
       
-        <select id="cause">
-        </select>
-
-        <div id='barInfo' class='hidden'></div>
+        <div id="main2">
+            <div id='barInfo' class='hidden'></div></div>
 
       </div>
+      
     </div>
+    <div id="concl">
+        <h2>Data</h2>
+        <p>The ten leading causes of death are shown above, with the number of deaths per each category shown by year, starting from 1999 and ending with 2016. 
+          This data was published by the Centers for Disease Control and Prevention and can be accessed here: 
+          <a href='https://catalog.data.gov/dataset/age-adjusted-death-rates-for-the-top-10-leading-causes-of-death-united-states-2013'>https://catalog.data.gov/dataset/age-adjusted-death-rates-for-the-top-10-leading-causes-of-death-united-states-2013</a>. 
+          Information was gathered based on the resident death certificates in the 
+          respective 50 states as well as Washington DC. The above graphs show the number of deaths per each of the ten leading causes of death. These are straight
+          numbers and are not adjusted per state, so data across states should only be compared taking this into consideration. 
+        </p>
+        <h2>Discussion</h2>
+        <p>While all ten leading causes of death are displayed, it is easily seen that there is a wide margin between the top two causes and the remaining causes.
+          These top two causes are heart disease and cancer. Looking at the congregate data from all locations, it would be easy to assume that overall, the number
+          of deaths due to heart disease have decreased while those due to cancer have increased in the past 17 years. However, this trend cannot be seen across all 
+          individual locations. For example, in Colorado, the number of deaths due to heart disease have increased, from 6.4 thousand in 1999 to 7.3 thousand in 2016.
+          This contrasts Iowa, which following the overall trend, had 8.7 thousand heart disease deaths in 1999 compared to only 6.9 thousand deaths in 2016. Without also 
+          having information on the overall population in both places as well as overall number of deaths, it is difficult to draw conclusions from just this. However, it
+          may lead one to wonder if treatment between different locations is significant and if advances, technology, and experience are evenly spread. 
+        </p>
+        <p>Putting aside the top two leading causes, one cause which only barely made the top ten may actually hold more reason for concern. Recently, the topic of mental 
+          health has been taking an increasing position of importance in media. Viewing this data, suicide has the fewest overall number of deaths; however, unlike many of the 
+          other causes of death, death due to suicide has been slowly but steadily increasing over the past years. This shows that more attention should be given to this cause of 
+          death, so this increase may be stunted or halted. 
+        </p>
+        <h2>Conclusion</h2>
+        <p>Overall, this data is insufficient for drawing clear-cut conclusions about the leading causes of death and the current state of treatment for these causes. However,
+          it brings to light questions about treament of these various causes throughout the different states. It also enforces the growing concerns about mental health, by showing
+          a trend of suicide increasing in recent years. This data, therefore, presents a good motivation for futher research into these aspects. More specific and detailed data should
+          be gathered on the treatments of leading causes of death. If death due to one cause is decreasing in a certain state due to advanced treatment, this information or technology
+          should be encouraged to spread to other states as well. With regard to the increased rate of suicide, research should be done into those more likely to commit suicide (perhaps
+          a certain age group, or of a certain socioeconomic class), and targeted support should be given to those in need. 
+        </p>
+      </div>
     <script src='./main.js'></script>
   </body>
 </html>
