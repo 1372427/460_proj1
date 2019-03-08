@@ -2,22 +2,26 @@
 
 ## Dataset description
 
-The data set I chose is information about the number of deaths due to the top ten leading causes of death from the years 1999 to 2016. This data was found
-at https://catalog.data.gov/dataset/age-adjusted-death-rates-for-the-top-10-leading-causes-of-death-united-states-2013 .
+The data set I chose is information about the number of deaths due to the top ten leading causes of death from the years 1999 to 2016. This data was found at https://catalog.data.gov/dataset/age-adjusted-death-rates-for-the-top-10-leading-causes-of-death-united-states-2013 .
 
-I opened the dataset in openrefine, but it was very clean. The numbers seemed reasonable overall, and there were no mispellings. I ended up not doing anything
-to the data. There are two columns that I did consider removing so that the data was more consice and did not use any excess memory. These were a more detailed 
-name for the cause of death, and a column named age-adjusted death rate. I did not clean these initially as I was not sure if I wanted to include these columns in the 
-final product. I needed to find out what the age-adjusted death rate was, but I could not understand from the description given on the dataset website. In the end, I did
+I opened the dataset in openrefine, but it was very clean. The numbers seemed reasonable overall, and there were no mispellings. I ended up not doing anything to the data. There are two columns that I did consider removing so that the data was more consice and did not use any excess memory. These were a more detailed name for the cause of death, and a column named age-adjusted death rate. I did not clean these initially as I was not sure if I wanted to include these columns in the final product. I needed to find out what the age-adjusted death rate was, but I could not understand from the description given on the dataset website. In the end, I did
 not use either of these columns. If I were to do this again, I would remove those columns of data. 
 
 ## Decisions on Visualization
 
 Originally, I was thinking about using a bar chart. The user would be able to pick between both the states and the causes of death. However, I felt like the user would benefit from seeing the comparison between the different causes within a state. I then decided to change the graph to a line chart, where all the causes of death were their own line and the user could change between the states. When I completed this, I realized that the scale was too large for the differences and trends in the causes with fewer deaths. To combat this, I first got rid of one "cause" which was all causes combined. This made the scale change significantly, yet I still did not think this was enough. I decided to add back my original bar chart, but as an extra feature. If the user wished to take a closer look at a particular cause of death, they can click on the line and a new graph would be displayed with only that cause being shown. To be consistent, I made the bars the same color as the one used in the line chart.  
 
+For styling of the page, I used the color checker linked in class as well as a short google search to pick the color scheme. I wanted the graph to stand out a bit, so it is set on a different colored background. However, I did not want an over saturation of color, especially as the graph already contains many colors, so the background color is very light. I went with a more monochrome style for the page itself, again to limit colors. I chose a font which was easy to read yet wasn't the basic default font. To me, this font is both bubbly so a bit lighter to improve the mood when dealing with such a sad topic, yet it also seems a bit newspaper-esque, giving it more of an article feel. 
+
+The legend is below the graph, and if I could, I would have moved it to be next to the graph. However, I was having difficulty with this so I decided to keep it below. I chose below rather than above as the majority of the lines are on the lower half of the graph, and it also serves as a legend for the second graph when it is also visible. 
+
+I added dots to the line to allow the user to interact with more detailed information. The interaction with the lines is more difficult as the line is fairly skinny to be a target. However, I chose the current width because anything thicker would lead to even more obscuring or overlapping of lines on the bottom half of the chart. I felt like this was a good combination between accessibility and view. I did not match the circle area to the number of deaths as this would be redundant data and also chance obscuring the other data, as mentioned. 
+
 ## Discoveries 
 
 I tried to add several different features in the graph than we covered in class. One of these was snapping to dots or lines when moving the mouse. I ended up not incorporating this, but I found several interesting examples regarding this.
+
+I also had fun working with my multiple lines as it made it a bit more complicated and it felt rewarding when things worked out. 
 
 ## Challenges
 
@@ -29,7 +33,7 @@ One thing which I could not solve, was a strange problem I only ran into under c
 
 ## Resources
 
-I used the following resources: 
+I used the following resources either as references or as a start for code snipets: 
 
 https://stackoverflow.com/questions/6623231/remove-all-white-spaces-from-text
 http://bl.ocks.org/WilliamQLiu/bd12f73d0b79d70bfbae
