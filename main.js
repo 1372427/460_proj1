@@ -26,13 +26,13 @@ let colorMatrix = {
     "Unintentional injuries": "teal",
     "Alzheimer's disease": "orange",
     "Cancer": "brown",
-    "CLRD": "green",
+    "CLRD": "magenta",
     "Diabetes": "blue",
     "Heart disease": "purple",
     "Influenza and pneumonia": "black",
     "Kidney disease": "yellow",
     "Stroke": "pink",
-    "Suicide": "magenta"
+    "Suicide": "green"
 };
 
 function rowConverter(d) {
@@ -51,7 +51,7 @@ function handleMouseOver(d, i){
       .classed('hidden', false)
       .style('margin-left', d3.event.pageX + 'px')
       .style('margin-top',  d3.event.pageY -140+ 'px')
-      .html(`<strong>Cause:</strong> ${d.cause}</br><strong>Year:</strong> ${d3.timeFormat('%Y')(d.year)}<br/> <strong>Deaths:</strong> ${d.deaths}`);
+      .html(`<strong>Location:</strong> ${d.state}</br><strong>Cause:</strong> ${d.cause}</br><strong>Year:</strong> ${d3.timeFormat('%Y')(d.year)}<br/> <strong>Deaths:</strong> ${d.deaths}`);
     
     //change color for extra pop
     d3.select(this).style('fill', 'red');
@@ -68,8 +68,8 @@ function handleMouseOut(d,i) {
 }
 
 //mouse clicks on a line
-function handleMouseClickLine(d){
-
+function handleMouseClickLine(d1){
+    cause = d1[0].cause;
     //check if the second graph already exists
    if(!svg2){ 
        //if not, create a button to hide the graph
@@ -88,18 +88,18 @@ function handleMouseClickLine(d){
 
         //scales
         yScale2 = d3.scaleLinear()
-            .domain([0,d3.max(groupByState[state][d[0].cause], (d)=> d.deaths)])
+            .domain([0,d3.max(groupByState[state][d1[0].cause], (d)=> d.deaths)])
             .range([h-50, 20]);
 
 
         xScale2 = d3.scaleTime()
-            .domain([d3.min(groupByState[state][d[0].cause], (d)=> d.year), d3.timeYear.offset(d3.max(groupByState[state][d[0].cause], (d)=> d.year),1)])
+            .domain([d3.min(groupByState[state][d1[0].cause], (d)=> d.year), d3.timeYear.offset(d3.max(groupByState[state][d1[0].cause], (d)=> d.year),1)])
             .range([70, w-40]);
 
 
         //bars
         svg2.selectAll('.bars')
-            .data(groupByState[state][d[0].cause])
+            .data(groupByState[state][d1[0].cause])
             .enter()
             .append('rect')
             .classed('bars', true)
@@ -107,7 +107,7 @@ function handleMouseClickLine(d){
             .attr('y', (d) => yScale2(d.deaths))
             .attr('height', (d) =>  h-50-yScale2(d.deaths))
             .attr('width', 20)
-            .attr('fill', (d) => colorMatrix[d.cause])
+            .style('fill', (d) => colorMatrix[d.cause])
             .on('mouseover', handleMouseOver)
             .on('mouseout', handleMouseOut);
 
@@ -143,23 +143,27 @@ function handleMouseClickLine(d){
         //un-hide the graph if hidden
         document.querySelectorAll('svg')[1].classList.remove('hidden')
         document.querySelector('button').classList.remove('hidden');
-        
+        updateSecondGraph();
+    }
+
+}
+
+function updateSecondGraph(){
+
         //update y scale
-        yScale2.domain([0,d3.max(groupByState[state][d[0].cause], (d)=> d.deaths)]);
+        yScale2.domain([0,d3.max(groupByState[state][cause], (d)=> d.deaths)]);
         yAxisGroup2.transition()
             .duration(1000)
             .call(yAxis2);
 
         //update bars
         svg2.selectAll(`.bars`)
-            .data(groupByState[state][d[0].cause])
+            .data(groupByState[state][cause])
             .transition()
             .duration(1000)
             .attr('y', (d) => yScale2(d.deaths))
             .attr('height', (d) =>  h-50-yScale2(d.deaths))
-            .attr('fill', (d) => colorMatrix[d.cause])
-    }
-
+            .style('fill', (d) => colorMatrix[cause])
 }
 
 //for mouse over the lines
@@ -350,5 +354,11 @@ window.onload = function() {
     })
 
     //add event listeners
-    stateDropDown.addEventListener("change", (e) => {state = e.target.value; updateGraph()})
+    stateDropDown.addEventListener("change", (e) => {
+        state = e.target.value; 
+        updateGraph();
+        if(svg2 && !document.querySelectorAll('svg')[1].classList.contains('hidden')){
+           updateSecondGraph();
+        }
+    })
 }
